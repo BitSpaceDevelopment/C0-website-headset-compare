@@ -95,7 +95,6 @@ export default function ComparePage() {
           >
             bsdxr.com
           </a>
-          <Link to="/admin" className="text-xs uppercase tracking-widest text-muted hover:text-text transition-colors">Admin</Link>
           <ThemeToggle />
         </div>
       </nav>
