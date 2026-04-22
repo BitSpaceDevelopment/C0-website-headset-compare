@@ -1,4 +1,5 @@
-import { useState, FormEvent } from 'react'
+import { useState } from 'react'
+import type { FormEvent } from 'react'
 import { useSpecCategories, useUpsertDeviceSpecs } from '../../lib/queries'
 import type { Device, DeviceFormData } from '../../types'
 import Input from '../ui/Input'
@@ -22,6 +23,7 @@ export default function DeviceForm({ device, onSubmit, onCancel }: Props) {
     currency:  device?.currency  ?? 'CAD',
     buy_url:   device?.buy_url   ?? '',
     is_active: device?.is_active ?? true,
+    is_in_production: device?.is_in_production ?? true,
   })
 
   // specValues: specItemId → value string
@@ -75,6 +77,10 @@ export default function DeviceForm({ device, onSubmit, onCancel }: Props) {
         <label className="flex items-center gap-2 text-xs uppercase tracking-widest text-muted cursor-pointer col-span-2">
           <input type="checkbox" checked={form.is_active} onChange={e => set('is_active', e.target.checked)} className="accent-accent" />
           Active (visible on comparison page)
+        </label>
+        <label className="flex items-center gap-2 text-xs uppercase tracking-widest text-muted cursor-pointer col-span-2">
+          <input type="checkbox" checked={form.is_in_production} onChange={e => set('is_in_production', e.target.checked)} className="accent-accent" />
+          In Production (uncheck if discontinued)
         </label>
       </div>
 

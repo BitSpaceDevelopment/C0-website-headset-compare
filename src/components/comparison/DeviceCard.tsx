@@ -2,9 +2,10 @@ import type { Device } from '../../types'
 
 interface Props {
   device: Device | null
+  filtered?: boolean
 }
 
-export default function DeviceCard({ device }: Props) {
+export default function DeviceCard({ device, filtered = false }: Props) {
   if (!device) {
     return (
       <div className="flex flex-col items-center justify-center h-40 border border-dashed border-border text-muted text-xs uppercase tracking-widest">
@@ -14,7 +15,21 @@ export default function DeviceCard({ device }: Props) {
   }
 
   return (
-    <div className="flex flex-col items-center gap-3 py-4">
+    <div className={`flex flex-col items-center gap-3 py-4 ${filtered ? 'opacity-40' : ''}`}>
+      {/* Status badges */}
+      <div className="flex gap-1 flex-wrap justify-center min-h-[20px]">
+        {!device.is_in_production && (
+          <span className="text-[10px] uppercase tracking-widest border border-yellow-700 text-yellow-600 px-1.5 py-0.5">
+            Discontinued
+          </span>
+        )}
+        {filtered && (
+          <span className="text-[10px] uppercase tracking-widest border border-orange-800 text-orange-500 px-1.5 py-0.5">
+            Filtered
+          </span>
+        )}
+      </div>
+
       <div className="w-24 h-24 flex items-center justify-center bg-surface-2 border border-border overflow-hidden">
         {device.image_url ? (
           <img

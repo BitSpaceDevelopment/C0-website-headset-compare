@@ -162,6 +162,18 @@ export function useDeviceSpecs(deviceIds: string[]) {
   })
 }
 
+export function useAllDeviceSpecs() {
+  return useQuery<DeviceSpec[]>({
+    queryKey: ['device_specs_all'],
+    queryFn: async () => {
+      const { data, error } = await supabase.from('device_specs').select('*')
+      if (error) throw error
+      return data ?? []
+    },
+    staleTime: 60_000,
+  })
+}
+
 export function useUpsertDeviceSpecs() {
   const qc = useQueryClient()
   return useMutation({

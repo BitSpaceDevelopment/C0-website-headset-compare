@@ -7,6 +7,7 @@ export interface Device {
   currency: string
   buy_url: string | null
   is_active: boolean
+  is_in_production: boolean
   created_at: string
 }
 

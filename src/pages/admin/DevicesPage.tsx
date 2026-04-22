@@ -46,7 +46,7 @@ export default function DevicesPage() {
           <table className="w-full text-xs font-mono">
             <thead>
               <tr className="border-b border-border bg-surface-2">
-                {['Brand', 'Name', 'Price', 'Status', ''].map(h => (
+                {['Brand', 'Name', 'Price', 'Status', 'Production', ''].map(h => (
                   <th key={h} className="text-left px-4 py-3 uppercase tracking-widest text-muted font-normal">{h}</th>
                 ))}
               </tr>
@@ -65,6 +65,11 @@ export default function DevicesPage() {
                   <td className="px-4 py-3">
                     <span className={`uppercase tracking-widest ${device.is_active ? 'text-green-500' : 'text-muted'}`}>
                       {device.is_active ? 'Active' : 'Hidden'}
+                    </span>
+                  </td>
+                  <td className="px-4 py-3">
+                    <span className={`uppercase tracking-widest ${device.is_in_production ? 'text-green-500' : 'text-yellow-600'}`}>
+                      {device.is_in_production ? 'Current' : 'Discontinued'}
                     </span>
                   </td>
                   <td className="px-4 py-3">
