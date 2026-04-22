@@ -1,5 +1,5 @@
-import { useState, useMemo, lazy, Suspense } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useMemo, lazy, Suspense, useEffect } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import { useDevices, useSpecCategories, useAllDeviceSpecs } from '../lib/queries'
 import type { FilterState } from '../lib/specUtils'
 import { DEFAULT_FILTER, deviceMatchesFilters, buildItemMap } from '../lib/specUtils'
@@ -31,10 +31,27 @@ export default function ComparePage() {
   const [selected, setSelected] = useState<(Device | null)[]>([null, null, null, null])
   const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTER)
   const { theme } = useTheme()
+  const [searchParams, setSearchParams] = useSearchParams()
 
   const { data: devices = [], isLoading: devicesLoading } = useDevices(true)
   const { data: categories = [], isLoading: catsLoading } = useSpecCategories()
   const { data: allSpecs = [] } = useAllDeviceSpecs()
+
+  useEffect(() => {
+    const addId = searchParams.get('add')
+    if (!addId || devices.length === 0) return
+    const device = devices.find(d => d.id === addId)
+    if (!device) return
+    setSelected(prev => {
+      if (prev.some(s => s?.id === addId)) return prev
+      const emptyIdx = prev.findIndex(s => s === null)
+      if (emptyIdx === -1) return prev
+      const next = [...prev]
+      next[emptyIdx] = device
+      return next
+    })
+    setSearchParams({}, { replace: true })
+  }, [searchParams, devices, setSearchParams])
 
   const itemMap = useMemo(() => buildItemMap(categories), [categories])
 
@@ -188,6 +205,12 @@ export default function ComparePage() {
                       >
                         {selectedIds.includes(device.id) ? 'Added' : '+ Compare'}
                       </button>
+                      <Link
+                        to={`/device/${device.id}`}
+                        className="text-[10px] uppercase tracking-widest text-muted hover:text-accent transition-colors text-center"
+                      >
+                        View More →
+                      </Link>
                     </div>
                   )
                 })}

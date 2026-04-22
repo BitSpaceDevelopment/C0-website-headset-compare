@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import type { Device } from '../../types'
 
 interface Props {
@@ -72,6 +73,12 @@ export default function DeviceCard({ device, filtered = false }: Props) {
           Notify Me
         </span>
       )}
+      <Link
+        to={`/device/${device.id}`}
+        className="text-[10px] uppercase tracking-widest text-muted hover:text-accent transition-colors"
+      >
+        View More →
+      </Link>
     </div>
   )
 }

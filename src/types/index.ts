@@ -8,7 +8,26 @@ export interface Device {
   buy_url: string | null
   is_active: boolean
   is_in_production: boolean
+  description: string | null
+  manufacturer_id: string | null
   created_at: string
+}
+
+export interface Manufacturer {
+  id: string
+  name: string
+  logo_url: string | null
+  website_url: string | null
+  description: string | null
+  created_at: string
+}
+
+export interface ManufacturerImage {
+  id: string
+  manufacturer_id: string
+  url: string
+  caption: string | null
+  order_index: number
 }
 
 export interface SpecCategory {
@@ -32,4 +51,14 @@ export interface DeviceSpec {
   value: string | null
 }
 
+export interface DeviceMedia {
+  id: string
+  device_id: string
+  type: 'image' | 'youtube'
+  url: string
+  caption: string | null
+  order_index: number
+}
+
 export type DeviceFormData = Omit<Device, 'id' | 'created_at'>
+export type ManufacturerFormData = Omit<Manufacturer, 'id' | 'created_at'>

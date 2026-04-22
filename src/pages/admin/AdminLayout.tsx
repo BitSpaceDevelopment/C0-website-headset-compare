@@ -74,8 +74,9 @@ export default function AdminLayout() {
         <aside className="w-48 border-r border-border flex-shrink-0 pt-6">
           <nav className="flex flex-col">
             {[
-              { to: '/admin/devices', label: 'Devices' },
-              { to: '/admin/specs',   label: 'Spec Structure' },
+              { to: '/admin/devices',       label: 'Devices' },
+              { to: '/admin/specs',         label: 'Spec Structure' },
+              { to: '/admin/manufacturers', label: 'Manufacturers' },
             ].map(({ to, label }) => (
               <NavLink
                 key={to}
