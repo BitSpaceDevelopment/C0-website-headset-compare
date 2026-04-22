@@ -22,3 +22,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Env — never commit secrets
+.env
+.env.*
+
+# Supabase local state
+supabase/.branches
+supabase/.temp
+
+# Claude local config
+.claude/

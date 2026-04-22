@@ -1,0 +1,1 @@
+ALTER TABLE devices ADD COLUMN IF NOT EXISTS is_in_production BOOLEAN NOT NULL DEFAULT true;
