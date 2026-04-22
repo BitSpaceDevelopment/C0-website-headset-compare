@@ -48,7 +48,10 @@ export function useDeleteDevice() {
       const { error } = await supabase.from('devices').delete().eq('id', id)
       if (error) throw error
     },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['devices'] }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['devices'] })
+      qc.invalidateQueries({ queryKey: ['device_specs_all'] })
+    },
   })
 }
 
@@ -181,6 +184,9 @@ export function useUpsertDeviceSpecs() {
       const { error } = await supabase.from('device_specs').upsert(specs, { onConflict: 'device_id,spec_item_id' })
       if (error) throw error
     },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['device_specs'] }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['device_specs'] })
+      qc.invalidateQueries({ queryKey: ['device_specs_all'] })
+    },
   })
 }

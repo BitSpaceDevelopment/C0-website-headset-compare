@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { FormEvent } from 'react'
-import { useSpecCategories, useUpsertDeviceSpecs } from '../../lib/queries'
+import { useSpecCategories, useDeviceSpecs, useUpsertDeviceSpecs } from '../../lib/queries'
 import type { Device, DeviceFormData } from '../../types'
 import Input from '../ui/Input'
 import Button from '../ui/Button'
@@ -13,23 +13,36 @@ interface Props {
 
 export default function DeviceForm({ device, onSubmit, onCancel }: Props) {
   const { data: categories = [] } = useSpecCategories()
+  const { data: existingSpecs = [] } = useDeviceSpecs(device ? [device.id] : [])
   const upsertSpecs = useUpsertDeviceSpecs()
 
   const [form, setForm] = useState<DeviceFormData>({
-    name:      device?.name      ?? '',
-    brand:     device?.brand     ?? '',
-    image_url: device?.image_url ?? '',
-    price:     device?.price     ?? null,
-    currency:  device?.currency  ?? 'CAD',
-    buy_url:   device?.buy_url   ?? '',
-    is_active: device?.is_active ?? true,
+    name:             device?.name             ?? '',
+    brand:            device?.brand            ?? '',
+    image_url:        device?.image_url        ?? '',
+    price:            device?.price            ?? null,
+    currency:         device?.currency         ?? 'CAD',
+    buy_url:          device?.buy_url          ?? '',
+    is_active:        device?.is_active        ?? true,
     is_in_production: device?.is_in_production ?? true,
   })
 
-  // specValues: specItemId → value string
   const [specValues, setSpecValues] = useState<Record<string, string>>({})
+  const [specsInitialized, setSpecsInitialized] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+
+  // Populate spec fields once existing data loads
+  useEffect(() => {
+    if (!specsInitialized && existingSpecs.length > 0) {
+      const initial: Record<string, string> = {}
+      for (const s of existingSpecs) {
+        if (s.value) initial[s.spec_item_id] = s.value
+      }
+      setSpecValues(initial)
+      setSpecsInitialized(true)
+    }
+  }, [existingSpecs, specsInitialized])
 
   const set = (key: keyof DeviceFormData, value: unknown) =>
     setForm(f => ({ ...f, [key]: value }))
@@ -41,7 +54,6 @@ export default function DeviceForm({ device, onSubmit, onCancel }: Props) {
     try {
       await onSubmit(form)
 
-      // Upsert spec values if editing an existing device
       if (device && Object.keys(specValues).length > 0) {
         const rows = Object.entries(specValues)
           .filter(([, v]) => v.trim() !== '')

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo, lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
 import { useDevices, useSpecCategories, useAllDeviceSpecs } from '../lib/queries'
 import type { FilterState } from '../lib/specUtils'
@@ -8,8 +8,9 @@ import DeviceSelector from '../components/comparison/DeviceSelector'
 import DeviceCard from '../components/comparison/DeviceCard'
 import SpecTable from '../components/comparison/SpecTable'
 import FilterPanel from '../components/comparison/FilterPanel'
-import ExportButton from '../components/comparison/ExportButton'
 import type { Device } from '../types'
+
+const ExportButton = lazy(() => import('../components/comparison/ExportButton'))
 
 const MAX_SLOTS = 4
 
@@ -35,13 +36,16 @@ export default function ComparePage() {
   const { data: categories = [], isLoading: catsLoading } = useSpecCategories()
   const { data: allSpecs = [] } = useAllDeviceSpecs()
 
-  const itemMap = buildItemMap(categories)
+  const itemMap = useMemo(() => buildItemMap(categories), [categories])
 
-  const passesFilter = (d: Device) => deviceMatchesFilters(d, filters, allSpecs, itemMap)
-  const filteredDevices = devices.filter(passesFilter)
+  const filteredDevices = useMemo(
+    () => devices.filter(d => deviceMatchesFilters(d, filters, allSpecs, itemMap)),
+    [devices, filters, allSpecs, itemMap],
+  )
 
-  const selectedIds = selected.filter(Boolean).map(d => d!.id)
-  const excludedIds = selectedIds
+  const filteredIds = useMemo(() => new Set(filteredDevices.map(d => d.id)), [filteredDevices])
+
+  const selectedIds = useMemo(() => selected.filter(Boolean).map(d => d!.id), [selected])
 
   function handleSelect(index: number, device: Device | null) {
     setSelected(prev => {
@@ -99,13 +103,13 @@ export default function ComparePage() {
           <div className="border-b border-border">
             <div className="grid gap-px bg-border" style={{ gridTemplateColumns: `repeat(${MAX_SLOTS}, 1fr)` }}>
               {selected.map((device, i) => {
-                const isFiltered = device !== null && !passesFilter(device)
+                const isFiltered = device !== null && !filteredIds.has(device.id)
                 return (
                   <div key={i} className="bg-background p-4 flex flex-col gap-3">
                     <DeviceSelector
                       devices={filteredDevices}
                       selected={device}
-                      excluded={excludedIds.filter(id => id !== device?.id)}
+                      excluded={selectedIds.filter(id => id !== device?.id)}
                       onChange={d => handleSelect(i, d)}
                       slotIndex={i}
                     />
@@ -125,7 +129,9 @@ export default function ComparePage() {
                 style={{ gridTemplateColumns: `192px repeat(${MAX_SLOTS}, 1fr)` }}
               >
                 <div className="bg-surface-2 px-4 py-3 flex items-center">
-                  <ExportButton selectedDevices={selected} categories={categories} specs={allSpecs} />
+                  <Suspense fallback={null}>
+                    <ExportButton selectedDevices={selected} categories={categories} specs={allSpecs} />
+                  </Suspense>
                 </div>
                 {selected.map((device, i) => (
                   <div key={i} className="bg-surface-2 px-4 py-3 text-xs uppercase tracking-wider text-text truncate">
@@ -148,7 +154,7 @@ export default function ComparePage() {
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
                 {devices.map(device => {
-                  const filtered = !passesFilter(device)
+                  const filtered = !filteredIds.has(device.id)
                   return (
                     <div
                       key={device.id}

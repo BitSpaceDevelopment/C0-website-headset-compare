@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { computeRowWinners } from '../../lib/specUtils'
 import type { Device, SpecCategory, DeviceSpec } from '../../types'
 
@@ -11,9 +12,15 @@ export default function SpecTable({ selectedDevices, categories, specs }: Props)
   const activeDevices = selectedDevices.filter(Boolean) as Device[]
   if (activeDevices.length === 0) return null
 
-  const getValue = (deviceId: string, specItemId: string): string | null => {
-    return specs.find(s => s.device_id === deviceId && s.spec_item_id === specItemId)?.value ?? null
-  }
+  // O(1) lookup instead of O(n) find per cell
+  const specMap = useMemo(() => {
+    const map = new Map<string, string | null>()
+    for (const s of specs) map.set(`${s.device_id}:${s.spec_item_id}`, s.value ?? null)
+    return map
+  }, [specs])
+
+  const getValue = (deviceId: string, specItemId: string): string | null =>
+    specMap.get(`${deviceId}:${specItemId}`) ?? null
 
   const colCount = selectedDevices.length
 
