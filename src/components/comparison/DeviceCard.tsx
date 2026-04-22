@@ -31,23 +31,24 @@ export default function DeviceCard({ device, filtered = false }: Props) {
         )}
       </div>
 
-      <div className="w-24 h-24 flex items-center justify-center bg-surface-2 border border-border overflow-hidden">
-        {device.image_url ? (
-          <img
-            src={device.image_url}
-            alt={device.name}
-            className="w-full h-full object-contain p-2"
-            onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
-          />
-        ) : (
-          <span className="text-muted text-xs uppercase tracking-wider">No img</span>
-        )}
-      </div>
-
-      <div className="text-center">
-        <div className="text-xs text-muted uppercase tracking-widest">{device.brand}</div>
-        <div className="text-sm uppercase tracking-wider text-text font-bold mt-0.5">{device.name}</div>
-      </div>
+      <Link to={`/device/${device.id}`} className="group block">
+        <div className="w-24 h-24 flex items-center justify-center bg-surface-2 border border-border overflow-hidden group-hover:border-accent transition-colors">
+          {device.image_url ? (
+            <img
+              src={device.image_url}
+              alt={device.name}
+              className="w-full h-full object-contain p-2"
+              onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+            />
+          ) : (
+            <span className="text-muted text-xs uppercase tracking-wider">No img</span>
+          )}
+        </div>
+        <div className="text-center mt-3">
+          <div className="text-xs text-muted uppercase tracking-widest">{device.brand}</div>
+          <div className="text-sm uppercase tracking-wider text-text font-bold mt-0.5 group-hover:text-accent transition-colors">{device.name}</div>
+        </div>
+      </Link>
 
       <div className="text-center">
         {device.price ? (
@@ -73,12 +74,6 @@ export default function DeviceCard({ device, filtered = false }: Props) {
           Notify Me
         </span>
       )}
-      <Link
-        to={`/device/${device.id}`}
-        className="text-[10px] uppercase tracking-widest text-muted hover:text-accent transition-colors"
-      >
-        View More →
-      </Link>
     </div>
   )
 }

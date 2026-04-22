@@ -177,24 +177,26 @@ export default function ComparePage() {
                       key={device.id}
                       className={`border border-border p-4 flex flex-col items-center gap-3 ${filtered ? 'opacity-40' : ''}`}
                     >
-                      <div className="w-20 h-20 flex items-center justify-center bg-surface-2 overflow-hidden">
-                        {device.image_url ? (
-                          <img src={device.image_url} alt={device.name} className="w-full h-full object-contain p-2"
-                            onError={e => { (e.target as HTMLImageElement).style.display = 'none' }} />
-                        ) : (
-                          <span className="text-muted text-xs">No img</span>
-                        )}
-                      </div>
-                      <div className="text-center">
-                        {!device.is_in_production && (
-                          <div className="text-[10px] uppercase tracking-widest text-yellow-600 mb-1">Discontinued</div>
-                        )}
-                        <div className="text-xs text-muted uppercase tracking-widest">{device.brand}</div>
-                        <div className="text-xs uppercase tracking-wider text-text font-bold">{device.name}</div>
-                        {device.price && (
-                          <div className="text-xs text-muted mt-1">{device.currency}${device.price.toLocaleString()}</div>
-                        )}
-                      </div>
+                      <Link to={`/device/${device.id}`} className="group flex flex-col items-center gap-2">
+                        <div className="w-20 h-20 flex items-center justify-center bg-surface-2 border border-border overflow-hidden group-hover:border-accent transition-colors">
+                          {device.image_url ? (
+                            <img src={device.image_url} alt={device.name} className="w-full h-full object-contain p-2"
+                              onError={e => { (e.target as HTMLImageElement).style.display = 'none' }} />
+                          ) : (
+                            <span className="text-muted text-xs">No img</span>
+                          )}
+                        </div>
+                        <div className="text-center">
+                          {!device.is_in_production && (
+                            <div className="text-[10px] uppercase tracking-widest text-yellow-600 mb-1">Discontinued</div>
+                          )}
+                          <div className="text-xs text-muted uppercase tracking-widest">{device.brand}</div>
+                          <div className="text-xs uppercase tracking-wider text-text font-bold group-hover:text-accent transition-colors">{device.name}</div>
+                          {device.price && (
+                            <div className="text-xs text-muted mt-1">{device.currency}${device.price.toLocaleString()}</div>
+                          )}
+                        </div>
+                      </Link>
                       <button
                         className="text-xs uppercase tracking-widest border border-border text-muted px-3 py-1 hover:border-accent hover:text-accent transition-colors w-full disabled:opacity-30 disabled:cursor-not-allowed"
                         onClick={() => {
@@ -205,12 +207,6 @@ export default function ComparePage() {
                       >
                         {selectedIds.includes(device.id) ? 'Added' : '+ Compare'}
                       </button>
-                      <Link
-                        to={`/device/${device.id}`}
-                        className="text-[10px] uppercase tracking-widest text-muted hover:text-accent transition-colors text-center"
-                      >
-                        View More →
-                      </Link>
                     </div>
                   )
                 })}

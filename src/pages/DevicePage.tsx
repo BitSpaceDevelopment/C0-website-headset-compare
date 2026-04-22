@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useDevice, useManufacturer, useDeviceMedia, useDeviceSpecs, useSpecCategories } from '../lib/queries'
 import { useTheme } from '../lib/theme'
 import SpecTable from '../components/comparison/SpecTable'
+
+const DeviceExportButton = lazy(() => import('../components/comparison/DeviceExportButton'))
 
 function getYouTubeId(url: string): string | null {
   const patterns = [
@@ -211,6 +213,14 @@ export default function DevicePage() {
               >
                 + Add to Compare
               </button>
+              <Suspense fallback={null}>
+                <DeviceExportButton
+                  device={device}
+                  manufacturer={manufacturer}
+                  categories={categories}
+                  specs={specs}
+                />
+              </Suspense>
             </div>
           </div>
         </div>
