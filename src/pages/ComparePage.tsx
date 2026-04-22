@@ -3,17 +3,33 @@ import { Link } from 'react-router-dom'
 import { useDevices, useSpecCategories, useAllDeviceSpecs } from '../lib/queries'
 import type { FilterState } from '../lib/specUtils'
 import { DEFAULT_FILTER, deviceMatchesFilters, buildItemMap } from '../lib/specUtils'
+import { useTheme } from '../lib/theme'
 import DeviceSelector from '../components/comparison/DeviceSelector'
 import DeviceCard from '../components/comparison/DeviceCard'
 import SpecTable from '../components/comparison/SpecTable'
 import FilterPanel from '../components/comparison/FilterPanel'
+import ExportButton from '../components/comparison/ExportButton'
 import type { Device } from '../types'
 
 const MAX_SLOTS = 4
 
+function ThemeToggle() {
+  const { theme, toggle } = useTheme()
+  return (
+    <button
+      onClick={toggle}
+      aria-label="Toggle theme"
+      className="w-8 h-8 flex items-center justify-center border border-border text-muted hover:border-accent hover:text-accent transition-colors text-base"
+    >
+      {theme === 'dark' ? '☀' : '☾'}
+    </button>
+  )
+}
+
 export default function ComparePage() {
   const [selected, setSelected] = useState<(Device | null)[]>([null, null, null, null])
   const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTER)
+  const { theme } = useTheme()
 
   const { data: devices = [], isLoading: devicesLoading } = useDevices(true)
   const { data: categories = [], isLoading: catsLoading } = useSpecCategories()
@@ -40,13 +56,26 @@ export default function ComparePage() {
   return (
     <div className="min-h-screen bg-background font-mono">
       {/* Nav */}
-      <nav className="border-b border-border px-6 py-4 flex items-center justify-between">
-        <div className="text-xs uppercase tracking-widest text-text font-bold">
-          BSD <span className="text-muted">XR</span>
-        </div>
-        <div className="flex items-center gap-6">
+      <nav className="border-b border-border px-6 py-3 flex items-center justify-between">
+        <a href="https://bsdxr.com" target="_blank" rel="noopener noreferrer">
+          <img
+            src={theme === 'dark' ? '/logo-dark.png' : '/logo-light.png'}
+            alt="BSD XR"
+            className="h-8 w-auto"
+          />
+        </a>
+        <div className="flex items-center gap-4">
           <span className="text-xs uppercase tracking-widest text-accent border-b border-accent pb-0.5">Compare</span>
+          <a
+            href="https://bsdxr.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs uppercase tracking-widest text-muted hover:text-text transition-colors"
+          >
+            bsdxr.com
+          </a>
           <Link to="/admin" className="text-xs uppercase tracking-widest text-muted hover:text-text transition-colors">Admin</Link>
+          <ThemeToggle />
         </div>
       </nav>
 
@@ -90,22 +119,24 @@ export default function ComparePage() {
           {/* Spec Table */}
           {selectedIds.length > 0 ? (
             <div className="overflow-x-auto">
-              {/* Sticky device header */}
+              {/* Sticky device header + export */}
               <div
                 className="sticky top-0 z-20 grid gap-px bg-border border-b border-border"
                 style={{ gridTemplateColumns: `192px repeat(${MAX_SLOTS}, 1fr)` }}
               >
-                <div className="bg-surface-2 px-4 py-3 text-xs uppercase tracking-widest text-muted">Spec</div>
+                <div className="bg-surface-2 px-4 py-3 flex items-center">
+                  <ExportButton selectedDevices={selected} categories={categories} specs={allSpecs} />
+                </div>
                 {selected.map((device, i) => (
                   <div key={i} className="bg-surface-2 px-4 py-3 text-xs uppercase tracking-wider text-text truncate">
-                    {device ? <><span className="text-muted">{device.brand} / </span>{device.name}</> : <span className="text-border-light">—</span>}
+                    {device ? <><span className="text-muted">{device.brand} / </span>{device.name}</> : <span className="text-muted">—</span>}
                   </div>
                 ))}
               </div>
               <SpecTable selectedDevices={selected} categories={categories} specs={allSpecs} />
             </div>
           ) : (
-            /* Zero-selection: show filtered devices as cards */
+            /* Zero-selection: show all devices as cards */
             <div className="px-6 py-10">
               <div className="flex items-center gap-3 mb-6">
                 <div className="text-xs uppercase tracking-widest text-muted">All Devices</div>
@@ -157,6 +188,54 @@ export default function ComparePage() {
               </div>
             </div>
           )}
+
+          {/* CTA Banner */}
+          <div className="border-t border-border bg-surface mt-8">
+            <div className="px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6 max-w-5xl mx-auto">
+              <div>
+                <div className="text-xs uppercase tracking-widest text-muted mb-2">Need Expert Guidance?</div>
+                <h2 className="text-xl uppercase tracking-widest font-bold text-text mb-2">
+                  Let Us Help You Choose the Right Headset
+                </h2>
+                <p className="text-xs text-muted tracking-wider leading-relaxed max-w-md">
+                  BSD XR specializes in deploying immersive technology across aerospace, construction, education,
+                  and manufacturing. Book a demo and get a tailored recommendation for your use case.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 shrink-0">
+                <a
+                  href="https://bsdxr.com/contact"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs uppercase tracking-widest border border-accent text-accent px-6 py-3 hover:bg-accent hover:text-background transition-colors text-center font-bold"
+                >
+                  Book a Demo →
+                </a>
+                <a
+                  href="https://bsdxr.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs uppercase tracking-widest border border-border text-muted px-6 py-2 hover:border-accent hover:text-accent transition-colors text-center"
+                >
+                  Learn More About BSD XR
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <footer className="border-t border-border px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3">
+            <a href="https://bsdxr.com" target="_blank" rel="noopener noreferrer">
+              <img
+                src={theme === 'dark' ? '/logo-dark.png' : '/logo-light.png'}
+                alt="BSD XR"
+                className="h-6 w-auto opacity-60 hover:opacity-100 transition-opacity"
+              />
+            </a>
+            <div className="text-[10px] uppercase tracking-widest text-muted">
+              Bit Space Development Ltd. · Winnipeg, MB, Canada · bsdxr.com
+            </div>
+          </footer>
         </>
       )}
     </div>

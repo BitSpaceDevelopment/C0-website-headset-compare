@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Outlet, NavLink, useNavigate, Link } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
+import { useTheme } from '../../lib/theme'
 import type { User } from '@supabase/supabase-js'
 
 export default function AdminLayout() {
   const navigate = useNavigate()
   const [user, setUser] = useState<User | null>(null)
   const [checking, setChecking] = useState(true)
+  const { theme, toggle } = useTheme()
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
@@ -51,6 +53,13 @@ export default function AdminLayout() {
         </div>
         <div className="flex items-center gap-4">
           <span className="text-xs text-muted hidden md:block">{user?.email}</span>
+          <button
+            onClick={toggle}
+            aria-label="Toggle theme"
+            className="w-7 h-7 flex items-center justify-center border border-border text-muted hover:border-accent hover:text-accent transition-colors text-sm"
+          >
+            {theme === 'dark' ? '☀' : '☾'}
+          </button>
           <button
             onClick={signOut}
             className="text-xs uppercase tracking-widest text-muted hover:text-text transition-colors"
