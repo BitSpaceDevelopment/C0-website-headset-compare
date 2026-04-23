@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { jsPDF } from 'jspdf'
 import type { Device, Manufacturer, SpecCategory, DeviceSpec } from '../../types'
+import logoLight from '../../assets/logo-light.png'
 
 interface Props {
   device: Device
@@ -61,11 +62,9 @@ export default function DeviceExportButton({ device, manufacturer, categories, s
       const margin = 16
       const contentW = pageW - margin * 2
 
-      // Load assets in parallel
-      const [logoDataUrl, deviceImageDataUrl] = await Promise.all([
-        fetchDataUrl('/logo-light.png'),
-        device.image_url ? fetchDataUrl(device.image_url) : Promise.resolve(null),
-      ])
+      // Logo is inlined at build time — use directly; fetch device image at runtime
+      const logoDataUrl: string | null = logoLight ?? null
+      const deviceImageDataUrl = device.image_url ? await fetchDataUrl(device.image_url) : null
 
       // ── Header bar ────────────────────────────────────────────────────────────
       doc.setFillColor(238, 238, 238)

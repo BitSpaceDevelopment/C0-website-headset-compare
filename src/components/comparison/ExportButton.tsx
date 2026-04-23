@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { jsPDF } from 'jspdf'
 import type { Device, SpecCategory, DeviceSpec } from '../../types'
+import logoLight from '../../assets/logo-light.png'
 
 interface Props {
   selectedDevices: (Device | null)[]
@@ -38,19 +39,8 @@ export default function ExportButton({ selectedDevices, categories, specs }: Pro
       const margin = 16
       const colW = (pageW - margin * 2) / (activeDevices.length + 1)
 
-      // Load logo
-      let logoDataUrl: string | null = null
-      try {
-        const resp = await fetch('/logo-light.png')
-        const blob = await resp.blob()
-        logoDataUrl = await new Promise<string>(res => {
-          const r = new FileReader()
-          r.onload = () => res(r.result as string)
-          r.readAsDataURL(blob)
-        })
-      } catch {
-        // continue without logo
-      }
+      // Logo is inlined at build time — use directly
+      const logoDataUrl: string | null = logoLight ?? null
 
       let y = margin
 

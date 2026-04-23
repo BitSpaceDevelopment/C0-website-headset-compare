@@ -3,6 +3,8 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useDevice, useManufacturer, useDeviceMedia, useDeviceSpecs, useSpecCategories } from '../lib/queries'
 import { useTheme } from '../lib/theme'
 import SpecTable from '../components/comparison/SpecTable'
+import logoDark from '../assets/logo-dark.png'
+import logoLight from '../assets/logo-light.png'
 
 const DeviceExportButton = lazy(() => import('../components/comparison/DeviceExportButton'))
 
@@ -73,7 +75,7 @@ export default function DevicePage() {
       {/* Nav */}
       <nav className="border-b border-border px-6 py-3 flex items-center justify-between">
         <a href="https://bsdxr.com" target="_blank" rel="noopener noreferrer">
-          <img src={theme === 'dark' ? '/logo-dark.png' : '/logo-light.png'} alt="BSD XR" className="h-8 w-auto" />
+          <img src={theme === 'dark' ? logoDark : logoLight} alt="BSD XR" className="h-8 w-auto" />
         </a>
         <div className="flex items-center gap-4">
           <Link to="/" className="text-xs uppercase tracking-widest text-muted hover:text-text transition-colors">
@@ -295,7 +297,7 @@ export default function DevicePage() {
       {/* Footer */}
       <footer className="border-t border-border px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3">
         <a href="https://bsdxr.com" target="_blank" rel="noopener noreferrer">
-          <img src={theme === 'dark' ? '/logo-dark.png' : '/logo-light.png'} alt="BSD XR"
+          <img src={theme === 'dark' ? logoDark : logoLight} alt="BSD XR"
             className="h-6 w-auto opacity-60 hover:opacity-100 transition-opacity" />
         </a>
         <div className="text-[10px] uppercase tracking-widest text-muted">

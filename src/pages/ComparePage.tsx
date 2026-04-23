@@ -9,6 +9,8 @@ import DeviceCard from '../components/comparison/DeviceCard'
 import SpecTable from '../components/comparison/SpecTable'
 import FilterPanel from '../components/comparison/FilterPanel'
 import type { Device } from '../types'
+import logoDark from '../assets/logo-dark.png'
+import logoLight from '../assets/logo-light.png'
 
 const ExportButton = lazy(() => import('../components/comparison/ExportButton'))
 
@@ -80,7 +82,7 @@ export default function ComparePage() {
       <nav className="border-b border-border px-6 py-3 flex items-center justify-between">
         <a href="https://bsdxr.com" target="_blank" rel="noopener noreferrer">
           <img
-            src={theme === 'dark' ? '/logo-dark.png' : '/logo-light.png'}
+            src={theme === 'dark' ? logoDark : logoLight}
             alt="BSD XR"
             className="h-8 w-auto"
           />
@@ -251,7 +253,7 @@ export default function ComparePage() {
           <footer className="border-t border-border px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3">
             <a href="https://bsdxr.com" target="_blank" rel="noopener noreferrer">
               <img
-                src={theme === 'dark' ? '/logo-dark.png' : '/logo-light.png'}
+                src={theme === 'dark' ? logoDark : logoLight}
                 alt="BSD XR"
                 className="h-6 w-auto opacity-60 hover:opacity-100 transition-opacity"
               />
