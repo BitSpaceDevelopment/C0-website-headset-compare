@@ -104,7 +104,7 @@ export const devices: Device[] = [
   // ── VR Headsets ──────────────────────────────────────────────────────────────
   {
     id: 'dev-quest3', name: 'Quest 3', brand: 'Meta',
-    image_url: 'https://www.meta.com/images/quest/quest3/q3-gallery-desktop-2.webp',
+    image_url: 'img/Meta Quest 3.png',
     price: 649, currency: 'CAD', buy_url: 'https://www.meta.com/ca/quest/quest-3/',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-meta',
     description: 'The Meta Quest 3 is Meta\'s most advanced mixed reality headset, featuring Snapdragon XR2 Gen 2, colour passthrough cameras, and pancake lenses for a slim, comfortable design. Ideal for gaming, productivity, and mixed reality experiences.',
@@ -112,7 +112,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-quest3s', name: 'Quest 3S', brand: 'Meta',
-    image_url: 'https://www.meta.com/images/quest/quest3s/q3s-gallery-desktop-2.webp',
+    image_url: 'img/Meta Quest 3S.jpg',
     price: 479, currency: 'CAD', buy_url: 'https://www.meta.com/ca/quest/quest-3s/',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-meta',
     description: 'The Meta Quest 3S delivers the Quest 3 experience at a lower price point with a compact design, Snapdragon XR2 Gen 2, and colour mixed reality passthrough.',
@@ -120,7 +120,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-quest-pro', name: 'Quest Pro', brand: 'Meta',
-    image_url: 'https://www.meta.com/images/quest/quest-pro/meta-quest-pro-hero.jpg',
+    image_url: 'img/Meta Quest Pro.jpg',
     price: 999, currency: 'USD', buy_url: 'https://www.meta.com/quest/quest-pro/',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-meta',
     description: 'The Meta Quest Pro is a high-end mixed reality headset targeting professionals, featuring eye and face tracking, Touch Pro controllers with haptics, and an open-face design optimised for productivity and collaboration.',
@@ -128,7 +128,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-vision-pro', name: 'Vision Pro', brand: 'Apple',
-    image_url: 'https://www.apple.com/v/apple-vision-pro/n/images/overview/hero/hero_intro_poster__fnihdk4xdxyu_large.jpg',
+    image_url: 'img/Apple Vision Pro.jpg',
     price: 4499, currency: 'CAD', buy_url: 'https://www.apple.com/ca/shop/buy-vision-pro',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-apple',
     description: 'Apple Vision Pro is a revolutionary spatial computer that seamlessly blends digital content with the physical world using micro-OLED displays, the M2 + R1 chip, and intuitive eye, hand, and voice input. No controllers required.',
@@ -136,7 +136,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-psvr2', name: 'PlayStation VR2', brand: 'Sony',
-    image_url: 'https://gmedia.playstation.com/is/image/SIEPDC/ps-vr2-image-block-01-en-14sep22',
+    image_url: 'img/Sony PlayStation VR2.webp',
     price: 649, currency: 'CAD', buy_url: 'https://www.playstation.com/en-ca/ps-vr2/',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-sony',
     description: 'The PlayStation VR2 delivers next-gen VR for PS5 with OLED displays, eye tracking, adaptive trigger Sense controllers, and 3D audio — all through a single USB-C cable to your PS5.',
@@ -144,7 +144,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-focus-vision', name: 'Focus Vision', brand: 'VIVE',
-    image_url: 'https://www.vive.com/media/filer_public/7c/b1/7cb1d5a7-5f7b-4e61-ad3c-47e0c88cf9fa/vive-focus-vision-hero.jpg',
+    image_url: 'img/VIVE Focus Vision.jpg',
     price: 1610, currency: 'CAD', buy_url: 'https://www.vive.com/ca/product/vivefocusvision/overview/',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-htc',
     description: 'The VIVE Focus Vision is HTC\'s flagship standalone enterprise headset, featuring eye tracking, a high-resolution 2448×2448 per-eye LCD, Snapdragon XR2 Gen 2, and PC VR streaming capability.',
@@ -152,7 +152,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-vive-pro2', name: 'VIVE Pro 2', brand: 'VIVE',
-    image_url: 'https://www.vive.com/media/filer_public/vive-pro-2-hero.jpg',
+    image_url: 'img/VIVE VIVE Pro 2.jpg',
     price: 799, currency: 'USD', buy_url: 'https://www.vive.com/us/product/vive-pro2/overview/',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-htc',
     description: 'The VIVE Pro 2 is a high-resolution PC VR headset delivering 2448×2448 per-eye resolution and 120° field of view, designed for professional simulation, training, and high-fidelity gaming on SteamVR.',
@@ -160,7 +160,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-xr-elite', name: 'XR Elite', brand: 'VIVE',
-    image_url: 'https://www.vive.com/media/filer_public/vive-xr-elite-hero.jpg',
+    image_url: 'img/VIVE XR Elite.webp',
     price: 1099, currency: 'USD', buy_url: 'https://www.vive.com/us/product/vive-xr-elite/overview/',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-htc',
     description: 'The VIVE XR Elite is a slim, convertible standalone headset that transforms into a glasses-style device, supporting both standalone Android apps and PC VR streaming via VIVE Streaming.',
@@ -168,7 +168,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-focus3', name: 'Focus 3', brand: 'VIVE',
-    image_url: 'https://www.vive.com/media/filer_public/vive-focus3-hero.jpg',
+    image_url: 'img/VIVE Focus 3.webp',
     price: 1300, currency: 'USD', buy_url: 'https://www.vive.com/us/product/vivefocus3/overview/',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-htc',
     description: 'The VIVE Focus 3 is an enterprise standalone headset with a hot-swappable battery, 2448×2448 per-eye LCD, ruggedised design, and optional eye tracking — built for demanding industrial deployments.',
@@ -176,7 +176,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-valve-index', name: 'Index', brand: 'Valve',
-    image_url: 'https://www.valvesoftware.com/en/index/images/index-hero.jpg',
+    image_url: 'img/Valve Index.jpg',
     price: 1399, currency: 'CAD', buy_url: 'https://store.steampowered.com/valveindex',
     is_active: true, is_in_production: false, manufacturer_id: 'mfr-valve',
     description: 'The Valve Index is a premium PC VR headset renowned for its 130° field of view, 144 Hz display, and revolutionary Index Controllers with per-finger tracking. Requires SteamVR base stations.',
@@ -184,7 +184,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-pico4ultra', name: 'Pico 4 Ultra', brand: 'PICO',
-    image_url: 'https://www.picoxr.com/static/images/pico4ultra/hero.webp',
+    image_url: 'img/PICO Pico 4 Ultra.jpg',
     price: 799, currency: 'USD', buy_url: 'https://www.picoxr.com/products/pico4-ultra',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-pico',
     description: 'The Pico 4 Ultra is PICO\'s flagship standalone headset with eye and face tracking, Snapdragon XR2 Gen 2, and full-colour passthrough for mixed reality — a strong alternative to the Meta Quest 3 for enterprise use.',
@@ -192,7 +192,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-pico4ultra-ent', name: 'Pico 4 Ultra Enterprise', brand: 'PICO',
-    image_url: 'https://www.picoxr.com/static/images/pico4ultra/hero.webp',
+    image_url: 'img/PICO Pico 4 Ultra Enterprise.webp',
     price: 699, currency: 'USD', buy_url: 'https://www.picoxr.com/products/pico4-ultra-enterprise',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-pico',
     description: 'The Pico 4 Ultra Enterprise adds enterprise device management, commercial licensing, and extended support to the Pico 4 Ultra platform, designed for large-scale enterprise VR deployments.',
@@ -200,7 +200,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-galaxy-xr', name: 'Galaxy XR', brand: 'Samsung',
-    image_url: 'https://images.samsung.com/is/image/samsung/p6pim/us/galaxy-xr/all/samsung-galaxy-xr-hero.jpg',
+    image_url: 'img/Samsung Galaxy XR.jpg',
     price: 1799, currency: 'USD', buy_url: 'https://www.samsung.com/us/mobile/galaxy-xr/',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-samsung',
     description: 'The Samsung Galaxy XR is a premium standalone headset built on Android XR in partnership with Google and Qualcomm, featuring micro-OLED displays, spatial audio, and deep integration with the Samsung and Google app ecosystems.',
@@ -208,7 +208,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-pimax-crystal-light', name: 'Crystal Light', brand: 'Pimax',
-    image_url: 'https://cdn.shopify.com/s/files/1/0580/8846/6663/files/pimax-crystal-light-hero.jpg',
+    image_url: 'img/Pimax Crystal Light.jpg',
     price: 899, currency: 'USD', buy_url: 'https://pimax.com/products/pimax-crystal-light',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-pimax',
     description: 'The Pimax Crystal Light delivers 2880×2880 per-eye resolution QLED displays and a massive 115° FOV for enthusiast PC VR users who want exceptional visual clarity at a more accessible price point.',
@@ -216,7 +216,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-pimax-crystal-super', name: 'Crystal Super', brand: 'Pimax',
-    image_url: 'https://cdn.shopify.com/s/files/1/0580/8846/6663/files/pimax-crystal-super-hero.jpg',
+    image_url: 'img/Pimax Crystal Super.webp',
     price: 1599, currency: 'USD', buy_url: 'https://pimax.com/products/pimax-crystal-super',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-pimax',
     description: 'The Pimax Crystal Super features 3840×3840 per-eye resolution — the highest of any PC VR headset — with eye tracking and a 120° FOV, targeting simulation professionals and hardcore VR enthusiasts.',
@@ -224,7 +224,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-varjo-xr4', name: 'XR-4', brand: 'Varjo',
-    image_url: 'https://varjo.com/app/uploads/2023/11/varjo-xr-4-hero.jpg',
+    image_url: 'img/Varjo XR-4.jpeg',
     price: 9995, currency: 'USD', buy_url: 'https://varjo.com/products/xr-4/',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-varjo',
     description: 'The Varjo XR-4 is the world\'s highest-fidelity professional XR headset, combining human-eye resolution optics with photorealistic mixed reality passthrough for aerospace, automotive, and defence simulation applications.',
@@ -232,7 +232,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-bigscreen-beyond', name: 'Beyond', brand: 'Bigscreen',
-    image_url: 'https://www.bigscreenvr.com/images/beyond-hero.jpg',
+    image_url: 'img/Bigscreen Beyond.webp',
     price: 999, currency: 'USD', buy_url: 'https://www.bigscreenvr.com/',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-bigscreen',
     description: 'The Bigscreen Beyond is the world\'s smallest and lightest PC VR headset at just 127g, featuring Sony micro-OLED panels and SteamVR tracking. Each unit is custom-fitted to your face scan for maximum comfort.',
@@ -240,7 +240,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-hp-reverb-g2', name: 'Reverb G2', brand: 'HP',
-    image_url: 'https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lookup/c07887455.png',
+    image_url: 'img/HP Reverb G2.webp',
     price: 299, currency: 'USD', buy_url: 'https://www.hp.com/us-en/shop/pdp/hp-reverb-g2-virtual-reality-headset',
     is_active: true, is_in_production: false, manufacturer_id: 'mfr-hp',
     description: 'The HP Reverb G2 (developed with Microsoft and Valve) delivered one of the sharpest PC VR displays at 2160×2160 per eye. As a Windows Mixed Reality headset, it ran on SteamVR and WMR until Microsoft discontinued the platform.',
@@ -248,7 +248,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-lynx-r1', name: 'R1', brand: 'Lynx',
-    image_url: 'https://lynx-r.com/wp-content/uploads/lynx-r1-hero.jpg',
+    image_url: 'img/Lynx R1.webp',
     price: 450, currency: 'USD', buy_url: 'https://lynx-r.com/',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-lynx',
     description: 'The Lynx R1 is a standalone open-source-friendly XR headset for developers, featuring catadioptric optics for a compact form factor, hand tracking, and passthrough AR — running AOSP Android for maximum hackability.',
@@ -257,7 +257,7 @@ export const devices: Device[] = [
   // ── AR Glasses ───────────────────────────────────────────────────────────────
   {
     id: 'dev-magic-leap2', name: 'Magic Leap 2', brand: 'Magic Leap',
-    image_url: 'https://www.magicleap.com/assets/ml2-hero.jpg',
+    image_url: 'img/Magic Leap 2.png',
     price: 3299, currency: 'USD', buy_url: 'https://www.magicleap.com/magic-leap-2',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-magicleap',
     description: 'Magic Leap 2 is an enterprise AR headset featuring the largest FOV of any waveguide AR device, dynamic dimming for bright environments, eye tracking, and a tethered compute pack for all-day battery life.',
@@ -265,7 +265,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-lenovo-a3', name: 'ThinkReality A3', brand: 'Lenovo',
-    image_url: 'https://p4-ofp.static.pub/ShareResource/na/solutions/smb/lenovo-thinkreality-a3-hero.jpg',
+    image_url: 'img/Lenovo ThinkReality A3.avif',
     price: 1499, currency: 'USD', buy_url: 'https://www.lenovo.com/us/en/p/smart-devices/ar/thinkreality-a3/len102e0002',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-lenovo',
     description: 'The Lenovo ThinkReality A3 is a lightweight enterprise AR glasses solution tethered to a PC or Motorola ThinkPhone, displaying two 1080p virtual screens for industrial and remote assistance workflows.',
@@ -273,7 +273,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-hololens2', name: 'HoloLens 2', brand: 'Microsoft',
-    image_url: 'https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4rRwF',
+    image_url: 'img/Microsoft HoloLens 2.avif',
     price: 3500, currency: 'USD', buy_url: 'https://www.microsoft.com/en-us/hololens/buy',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-microsoft',
     description: 'The Microsoft HoloLens 2 is the definitive enterprise AR headset with articulated hand tracking, eye tracking, and holographic waveguide displays — widely deployed in manufacturing, healthcare, and defence worldwide.',
@@ -281,7 +281,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-glass-ee2', name: 'Glass Enterprise Edition 2', brand: 'Google',
-    image_url: 'https://lh3.googleusercontent.com/Q-FVv6yxE5MXZX0bFwzDjHHF1JaHMlPKx3Y3JKB2-8WUphlsMFmv63RDXX4GVbRtA=s1600',
+    image_url: 'img/Google Glass Enterprise Edition 2.jpg',
     price: 999, currency: 'USD', buy_url: 'https://www.google.com/glass/start/',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-google',
     description: 'Google Glass Enterprise Edition 2 is a lightweight monocular smart glasses platform for hands-free industrial workflows, featuring a 360p prism display, camera, and long battery life for shift-length use.',
@@ -289,7 +289,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-realwear-520', name: 'Navigator 520', brand: 'RealWear',
-    image_url: 'https://www.realwear.com/wp-content/uploads/2022/09/Navigator-520-Hero.jpg',
+    image_url: 'img/RealWear Navigator 520.avif',
     price: 2295, currency: 'USD', buy_url: 'https://www.realwear.com/product/navigator-520/',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-realwear',
     description: 'The RealWear Navigator 520 is a ruggedised, voice-controlled industrial AR headset with a heads-up micro-display, designed for hands-free operation in noisy, dirty, and hazardous manufacturing environments.',
@@ -297,7 +297,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-xreal-air2ultra', name: 'Air 2 Ultra', brand: 'XREAL',
-    image_url: 'https://www.xreal.com/img/air2ultra/hero.webp',
+    image_url: 'img/XREAL Air 2 Ultra.webp',
     price: 699, currency: 'USD', buy_url: 'https://www.xreal.com/air2ultra/',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-xreal',
     description: 'The XREAL Air 2 Ultra offers 6DoF spatial computing in a glasses-weight form factor with micro-OLED displays, hand tracking, and 3D spatial mapping — tethered to an XREAL Beam or compatible Android/iPhone device.',
@@ -305,7 +305,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-rokid-max', name: 'Rokid Max', brand: 'Rokid',
-    image_url: 'https://www.rokid.com/images/rokid-max-hero.jpg',
+    image_url: 'img/Rokid Rokid Max.jpg',
     price: 449, currency: 'USD', buy_url: 'https://www.rokid.com/products/rokid-max',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-rokid',
     description: 'The Rokid Max delivers a 215" virtual screen in a pair of sunglasses-style frames using Micro-OLED optics, ideal for media consumption, portable productivity, and mobile gaming via the Rokid Station.',
@@ -313,7 +313,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-vuzix-blade2', name: 'Blade 2', brand: 'Vuzix',
-    image_url: 'https://www.vuzix.com/products/blade2-smart-glasses-hero.jpg',
+    image_url: 'img/Vuzix Blade 2.webp',
     price: 1799, currency: 'USD', buy_url: 'https://www.vuzix.com/products/blade2-smart-glasses',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-vuzix',
     description: 'The Vuzix Blade 2 is a fully standalone Android smart glasses solution for enterprise, featuring a waveguide monocular display, 12 MP camera, and running a custom Android OS for workflow applications.',
@@ -321,7 +321,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-snap-spectacles', name: 'Spectacles (5th Gen)', brand: 'Snap',
-    image_url: 'https://ar.snap.com/images/spectacles/spectacles-5-hero.jpg',
+    image_url: 'img/Snap Spectacles 5th Gen.png',
     price: null, currency: 'USD', buy_url: 'https://ar.snap.com/spectacles',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-snap',
     description: 'Snap Spectacles 5th Gen are waveguide AR glasses for creators and developers, featuring dual 3D waveguide displays, gesture input, and the Snapchat Lens platform — currently available as a developer kit.',
@@ -329,7 +329,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-tcl-nxtwear', name: 'NXTWEAR S+', brand: 'TCL',
-    image_url: 'https://www.tcl.com/content/dam/tcl/product/nxtwear-splus-hero.jpg',
+    image_url: 'img/TCL NXTWEAR S+.jpg',
     price: 329, currency: 'USD', buy_url: 'https://www.tcl.com/us/en/products/mobile/nxtwear-s-plus',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-tcl',
     description: 'The TCL NXTWEAR S+ are consumer AR display glasses offering a 130" virtual screen experience via Micro-OLED lenses, connecting to smartphones and laptops over USB-C for media and productivity.',
@@ -337,7 +337,7 @@ export const devices: Device[] = [
   },
   {
     id: 'dev-epson-moverio', name: 'Moverio BT-45CS', brand: 'Epson',
-    image_url: 'https://mediaserver.goepson.com/ImConvServlet/imconv/2c0e9c7d-7b17-4b85-b05b-c4a5f38e5b8a/main_S',
+    image_url: 'img/Epson Moverio BT-45CS.jpg',
     price: 849, currency: 'USD', buy_url: 'https://www.epson.com/en_US/products/smart-glasses/moverio-bt-45cs/SPT_V12H942020',
     is_active: true, is_in_production: true, manufacturer_id: 'mfr-epson',
     description: 'The Epson Moverio BT-45CS are binocular enterprise AR smart glasses with an Si-OLED display, wide 34° FOV, and Android OS — popular for drone piloting, aircraft maintenance, and industrial AR applications.',
